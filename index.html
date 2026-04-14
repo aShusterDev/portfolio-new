@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Alex Shusterman — Marketing Manager, Business Development Specialist, and Full-Stack Developer. Portfolio and professional experience." />
+    <title>Alex Shusterman — Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fraunces:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+    <!-- Custom cursor -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-dot" id="cursor-dot"></div>
+
+    <!-- Progress bar -->
+    <div class="scroll-progress" id="scroll-progress"></div>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="#home" class="nav-brand">
+                <span class="brand-mark">AS</span>
+                <span class="brand-name">Alex Shusterman</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#about" class="nav-link" data-section="about"><span class="nav-num">01</span>About</a></li>
+                <li><a href="#experience" class="nav-link" data-section="experience"><span class="nav-num">02</span>Experience</a></li>
+                <li><a href="#projects" class="nav-link" data-section="projects"><span class="nav-num">03</span>Projects</a></li>
+                <li><a href="#skills" class="nav-link" data-section="skills"><span class="nav-num">04</span>Skills</a></li>
+                <li><a href="#contact" class="nav-link" data-section="contact"><span class="nav-num">05</span>Contact</a></li>
+            </ul>
+            <a href="assets/Alex_Shusterman_Resume.pdf" download="Alex_Shusterman_Resume.pdf" class="cv-button">
+                <span class="cv-text">Download CV</span>
+                <span class="cv-icon">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                </span>
+            </a>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile menu overlay -->
+    <div class="mobile-menu" id="mobile-menu">
+        <ul class="mobile-links">
+            <li><a href="#about" class="mobile-link"><span>01</span>About</a></li>
+            <li><a href="#experience" class="mobile-link"><span>02</span>Experience</a></li>
+            <li><a href="#projects" class="mobile-link"><span>03</span>Projects</a></li>
+            <li><a href="#skills" class="mobile-link"><span>04</span>Skills</a></li>
+            <li><a href="#contact" class="mobile-link"><span>05</span>Contact</a></li>
+            <li><a href="assets/Alex_Shusterman_Resume.pdf" download class="mobile-link mobile-cv"><span>↓</span>Download CV</a></li>
+        </ul>
+    </div>
+
+    <main>
+        <!-- HERO -->
+        <section class="section hero" id="home">
+            <div class="hero-bg" aria-hidden="true"></div>
+            <div class="hero-inner">
+                <div class="hero-label reveal">
+                    <span class="dot"></span>
+                    Available for new opportunities
+                </div>
+                <h1 class="hero-title">
+                    <span class="line"><span class="line-inner"><em>Business</em> Developer.</span></span>
+                    <span class="line"><span class="line-inner"><em>Marketing.</em></span></span>
+                    <span class="line"><span class="line-inner">Software<em> Dev.</em></span></span>
+                </h1>
+                <p class="hero-sub reveal">
+                    I'm <strong>Alex Shusterman</strong> — A Multidisciplinary Business Developer, Marketer and full-stack Developer based in Toronto. I build brands, relationships, and products that move the needle.
+                </p>
+                <div class="hero-cta reveal">
+                    <a href="#experience" class="btn btn-primary">
+                        <span>See my work</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </a>
+                    <a href="#projects" class="btn btn-outline">
+                        <span>See my projects</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                    </a>
+                    <a href="#contact" class="btn btn-ghost"><span>Get in touch</span></a>
+                    <div class="scroll-indicator">
+                        <span class="label">Scroll</span>
+                        <span class="scroll-line"><span class="scroll-line-inner"></span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-foot">
+                <div class="hero-foot-item">
+                    <span class="label">Based in</span>
+                    <span class="value">Toronto, CA</span>
+                </div>
+                <div class="hero-foot-item">
+                    <span class="label">Languages</span>
+                    <span class="value">English · Russian · Hebrew</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section class="section about" id="about">
+            <div class="section-head">
+                <span class="section-num">01</span>
+                <span class="section-title">About</span>
+            </div>
+            <div class="about-grid">
+                <div class="about-lead reveal">
+                    <h2 class="about-headline">
+                        I merge <em>strategy</em>, <em>storytelling</em>, and <em>code</em> to build experiences that connect.
+                    </h2>
+                </div>
+                <div class="about-body">
+                    <p class="reveal">
+                        I come from an unusual mix — a Bachelor of Science in Kinesiology, hands-on experience in retail and community outreach, and years building B2B pipelines and marketing strategies from scratch. That combination lets me see a business from three angles at once: the customer, the operator, and the builder.
+                    </p>
+                    <p class="reveal">
+                        I've led Facebook and LinkedIn strategies that grew brand awareness and leads. I've built C-suite relationships that closed high-value staffing deals. I've integrated CRM systems that drove a 170% year-over-year sales increase. And on the side, I design and develop full-stack web and mobile apps because I genuinely love the craft.
+                    </p>
+                    <p class="reveal">
+                        Off-hours you'll find me on the tennis court, at a hockey rink, buried in a book, or tinkering with the latest AI tooling.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXPERIENCE -->
+        <section class="section experience" id="experience">
+            <div class="section-head">
+                <span class="section-num">02</span>
+                <span class="section-title">Experience</span>
+            </div>
+            <div class="xp-intro reveal">
+                <h2>A career built on <em>relationships</em>, <em>results</em>, and <em>reinvention</em>.</h2>
+            </div>
+
+            <div class="timeline">
+                <article class="xp-item reveal">
+                    <div class="xp-date">
+                        <span>Apr 2025</span>
+                        <span class="dash">—</span>
+                        <span>Jan 2026</span>
+                    </div>
+                    <div class="xp-body">
+                        <h3 class="xp-role">Head of Marketing</h3>
+                        <p class="xp-company">Express Employment Professionals — Toronto North</p>
+                        <ul class="xp-list">
+                            <li>Developed and executed a comprehensive social media strategy across Facebook and LinkedIn to drive brand awareness, engagement, and lead generation.</li>
+                            <li>Owned content planning and calendar management, creating and curating posts that align with company messaging, industry trends, and seasonal campaigns.</li>
+                            <li>Leveraged AI to automate publishing, monitor channel performance, and track key metrics (engagement, reach, conversion) for data-driven optimization.</li>
+                            <li>Coordinated with Recruiting teams to amplify staffing success stories, client testimonials, and thought-leadership content, enhancing cross-functional alignment.</li>
+                            <li>Analyzed campaign results and platform analytics to produce regular reports, identify growth opportunities, and recommend adjustments to maximize ROI.</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article class="xp-item reveal">
+                    <div class="xp-date">
+                        <span>Feb 2025</span>
+                        <span class="dash">—</span>
+                        <span>Jan 2026</span>
+                    </div>
+                    <div class="xp-body">
+                        <h3 class="xp-role">Business Development Specialist</h3>
+                        <p class="xp-company">Express Employment Professionals — Toronto North</p>
+                        <ul class="xp-list">
+                            <li>Closed high-value deals with mid-market companies ($90M+ revenue) while building a pipeline from scratch across North York and the GTA.</li>
+                            <li>Developed and strengthened relationships with C-suite and executive decision makers to influence hiring strategy and secure strategic accounts.</li>
+                            <li>Generated qualified leads through high-volume prospecting across in-person, phone, email, and social channels, driving consistent new business growth.</li>
+                            <li>Targeted HR, Operations, Finance, IT, and Sales functions to uncover staffing and payroll needs and deliver tailored solutions.</li>
+                            <li>Streamlined full sales cycle by assessing client requirements and cultural fit, accelerating deal closure and maximizing efficiency.</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article class="xp-item reveal">
+                    <div class="xp-date">
+                        <span>Feb 2022</span>
+                        <span class="dash">—</span>
+                        <span>Feb 2025</span>
+                    </div>
+                    <div class="xp-body">
+                        <h3 class="xp-role">Mobile Retail Sales Associate</h3>
+                        <p class="xp-company">WOW! mobile boutique</p>
+                        <ul class="xp-list">
+                            <li>Spearheaded the integration of Statflo CRM, driving a 170% year-over-year sales increase from 2022 to 2023.</li>
+                            <li>Consistently surpassed monthly KPI targets by averaging 110% to target, leveraging in-depth knowledge of mobile technology to provide tailored recommendations.</li>
+                            <li>Recognized as one of the top 1 accessory sales representative in the district multiple times annually from 2022 to 2024, with up to 350% sales to target.</li>
+                            <li>Provided tailored product recommendations, inspiring customers to choose the best tech solutions.</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article class="xp-item reveal">
+                    <div class="xp-date">
+                        <span>May 2021</span>
+                        <span class="dash">—</span>
+                        <span>Dec 2021</span>
+                    </div>
+                    <div class="xp-body">
+                        <h3 class="xp-role">Community Outreach Specialist</h3>
+                        <p class="xp-company">Jewish Russian Community Centre of Ontario</p>
+                        <ul class="xp-list">
+                            <li>Conducted daily outreach through 100+ calls and emails, advising and inspiring community members to engage with digital initiatives.</li>
+                            <li>Leveraged Salesforce to enhance donor management and improve outreach strategies, driving a 25% increase in community engagement.</li>
+                            <li>Maintained and enhanced the organization's social media presence through strategic graphics and blog posts.</li>
+                            <li>Executed community-building workshops and events, reinforcing long-term relationships and partnerships.</li>
+                        </ul>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Education block -->
+            <div class="education reveal">
+                <div class="edu-head">
+                    <span class="edu-label">Education</span>
+                </div>
+                <div class="edu-item">
+                    <div class="edu-date">2018 — 2022</div>
+                    <div class="edu-body">
+                        <h3>Honours Bachelor of Science</h3>
+                        <p>Kinesiology &amp; Health Science · York University</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS -->
+        <section class="section projects" id="projects">
+            <div class="section-head">
+                <span class="section-num">03</span>
+                <span class="section-title">Projects</span>
+            </div>
+
+            <div class="projects-intro reveal">
+                <h2>Side projects built for the <em>love</em> of it.</h2>
+            </div>
+
+            <div class="projects-grid">
+                <a href="https://ashusterdev.github.io/guessinggame/" target="_blank" rel="noopener" class="project-card reveal">
+                    <div class="project-media" style="background-image: url('https://ashusterdev.github.io/Portfolio/images/Numbergame.jpeg');">
+                        <div class="project-overlay">
+                            <span class="project-visit">
+                                Visit site
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="project-meta">
+                        <span class="project-num">01 / Web Game</span>
+                        <h3 class="project-title">The Number Guessing Game</h3>
+                        <p class="project-desc">Guess a number from 1 to 20. Get it right and you're added to the winners' leaderboard with your name — a playful take on HTML, CSS, and JavaScript state handling.</p>
+                        <span class="project-cta">
+                            Launch project
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                        </span>
+                    </div>
+                </a>
+
+                <a href="https://ashusterdev.github.io/Beatthestreak/" target="_blank" rel="noopener" class="project-card reveal">
+                    <div class="project-media" style="background-image: url('https://ashusterdev.github.io/Portfolio/images/GuessandBeatTheStreak.jpeg');">
+                        <div class="project-overlay">
+                            <span class="project-visit">
+                                Visit site
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="project-meta">
+                        <span class="project-num">02 / Web Game</span>
+                        <h3 class="project-title">Guess &amp; Beat the Streak</h3>
+                        <p class="project-desc">A numerical guessing challenge — rack up as many correct guesses in a row as you can before you slip. Built to play with streak logic and lightweight UI feedback.</p>
+                        <span class="project-cta">
+                            Launch project
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                        </span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- SKILLS -->
+        <section class="section skills" id="skills">
+            <div class="section-head">
+                <span class="section-num">04</span>
+                <span class="section-title">Skills</span>
+            </div>
+
+            <div class="skills-intro reveal">
+                <h2>A toolkit shaped by <em>sales</em>, <em>marketing</em>, and <em>engineering</em>.</h2>
+            </div>
+
+            <div class="skills-grid">
+                <div class="skill-group reveal">
+                    <h3 class="skill-heading">Sales &amp; Business Development</h3>
+                    <ul class="skill-list">
+                        <li>Lead Generation</li>
+                        <li>Account Management</li>
+                        <li>Prospecting</li>
+                        <li>Creative Problem Solving</li>
+                        <li>C-Suite Outreach</li>
+                    </ul>
+                </div>
+                <div class="skill-group reveal">
+                    <h3 class="skill-heading">Marketing</h3>
+                    <ul class="skill-list">
+                        <li>Facebook &amp; LinkedIn Strategy</li>
+                        <li>Content Planning</li>
+                        <li>Brand Awareness</li>
+                        <li>AI-Driven Automation</li>
+                        <li>Performance Analytics</li>
+                    </ul>
+                </div>
+                <div class="skill-group reveal">
+                    <h3 class="skill-heading">Tools &amp; Platforms</h3>
+                    <ul class="skill-list">
+                        <li>Salesforce</li>
+                        <li>Statflo CRM</li>
+                        <li>Zoominfo</li>
+                        <li>RQ Retail Management</li>
+                        <li>Microsoft Suite</li>
+                        <li>Adobe Suite</li>
+                    </ul>
+                </div>
+                <div class="skill-group reveal">
+                    <h3 class="skill-heading">Development</h3>
+                    <ul class="skill-list">
+                        <li>Full-Stack Development</li>
+                        <li>HTML · CSS · JavaScript</li>
+                        <li>UI / UX Design</li>
+                        <li>WordPress · Shopify</li>
+                        <li>iOS &amp; Android (Swift · Kotlin)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="marquee" aria-hidden="true">
+                <div class="marquee-track">
+                    <span>English</span><span class="sep">—</span>
+                    <span>Русский</span><span class="sep">—</span>
+                    <span>עברית</span><span class="sep">—</span>
+                    <span>Tennis</span><span class="sep">—</span>
+                    <span>Hockey</span><span class="sep">—</span>
+                    <span>Books</span><span class="sep">—</span>
+                    <span>Innovative Tech</span><span class="sep">—</span>
+                    <span>English</span><span class="sep">—</span>
+                    <span>Русский</span><span class="sep">—</span>
+                    <span>עברית</span><span class="sep">—</span>
+                    <span>Tennis</span><span class="sep">—</span>
+                    <span>Hockey</span><span class="sep">—</span>
+                    <span>Books</span><span class="sep">—</span>
+                    <span>Innovative Tech</span><span class="sep">—</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section class="section contact" id="contact">
+            <div class="section-head">
+                <span class="section-num">05</span>
+                <span class="section-title">Contact</span>
+            </div>
+
+            <div class="contact-inner">
+                <h2 class="contact-headline reveal">
+                    Let's <em>build</em> something <br />worth <em>talking about.</em>
+                </h2>
+
+                <div class="contact-grid">
+                    <a href="tel:+16478603440" class="contact-tile reveal">
+                        <span class="contact-icon">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        </span>
+                        <span class="contact-tile-text">
+                            <span class="contact-tile-label">Phone</span>
+                            <span class="contact-tile-value">Call me</span>
+                        </span>
+                    </a>
+                    <a href="mailto:alexshuster2000@gmail.com" class="contact-tile reveal">
+                        <span class="contact-icon">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        </span>
+                        <span class="contact-tile-text">
+                            <span class="contact-tile-label">Email</span>
+                            <span class="contact-tile-value">Send an email</span>
+                        </span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/alex-shusterman/" target="_blank" rel="noopener" class="contact-tile reveal">
+                        <span class="contact-icon">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                        </span>
+                        <span class="contact-tile-text">
+                            <span class="contact-tile-label">LinkedIn</span>
+                            <span class="contact-tile-value">Connect</span>
+                        </span>
+                    </a>
+                    <a href="assets/Alex_Shusterman_Resume.pdf" download class="contact-tile reveal">
+                        <span class="contact-icon">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        </span>
+                        <span class="contact-tile-text">
+                            <span class="contact-tile-label">Resume</span>
+                            <span class="contact-tile-value">Download PDF</span>
+                        </span>
+                    </a>
+                </div>
+            </div>
+
+            <footer class="footer">
+                <div class="footer-row">
+                    <span>© <span id="year"></span> Alex Shusterman</span>
+                    <span class="footer-time" id="local-time">—</span>
+                    <div class="footer-socials">
+                        <a href="https://www.linkedin.com/in/alex-shusterman/" target="_blank" rel="noopener">LinkedIn</a>
+                        <a href="mailto:alexshuster2000@gmail.com">Email</a>
+                        <a href="https://ashusterdev.github.io/Portfolio/" target="_blank" rel="noopener">Old Portfolio</a>
+                    </div>
+                </div>
+            </footer>
+        </section>
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
