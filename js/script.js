@@ -10,6 +10,39 @@
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     /* -----------------------------------------
+       Theme toggle (light / dark)
+       Defaults to dark; light is opt-in, persisted in localStorage.
+       The initial theme is set by an inline script in <head> to avoid FOUC.
+    ----------------------------------------- */
+    const themeToggle = document.getElementById('theme-toggle');
+
+    function applyTheme(theme) {
+        if (theme === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+        } else {
+            document.documentElement.removeAttribute('data-theme');
+        }
+        if (themeToggle) {
+            const isLight = theme === 'light';
+            const label = isLight ? 'Switch to dark mode' : 'Switch to light mode';
+            themeToggle.setAttribute('aria-label', label);
+            themeToggle.setAttribute('title', label);
+        }
+    }
+
+    // Sync button label with whatever was pre-applied in <head>.
+    applyTheme(document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark');
+
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+            const next = isLight ? 'dark' : 'light';
+            applyTheme(next);
+            try { localStorage.setItem('theme', next); } catch (e) { /* ignore */ }
+        });
+    }
+
+    /* -----------------------------------------
        Year + local time
     ----------------------------------------- */
     const yearEl = document.getElementById('year');
@@ -31,12 +64,18 @@
     setInterval(updateTime, 30000);
 
     /* -----------------------------------------
-       Nav scroll state + progress bar
+       Unified scroll handler (rAF-throttled)
+       Handles: nav state, progress bar, hero parallax.
+       Consolidating and throttling avoids redundant reflows
+       and keeps scrolling smooth.
     ----------------------------------------- */
     const nav = document.getElementById('nav');
     const progress = document.getElementById('scroll-progress');
+    const heroBg = document.querySelector('.hero-bg');
+    const doParallax = heroBg && !prefersReduced;
 
-    function onScroll() {
+    let scrollTicking = false;
+    function handleScroll() {
         const y = window.scrollY;
         const doc = document.documentElement;
         const height = doc.scrollHeight - doc.clientHeight;
@@ -44,9 +83,21 @@
 
         if (progress) progress.style.width = pct + '%';
         if (nav) nav.classList.toggle('nav-scrolled', y > 50);
+
+        if (doParallax && y < window.innerHeight) {
+            heroBg.style.transform = `translate3d(0, ${y * 0.25}px, 0)`;
+        }
+
+        scrollTicking = false;
+    }
+    function onScroll() {
+        if (!scrollTicking) {
+            scrollTicking = true;
+            requestAnimationFrame(handleScroll);
+        }
     }
     window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
+    handleScroll();
 
     /* -----------------------------------------
        Active nav link (scrollspy)
@@ -97,18 +148,19 @@
         revealObs.observe(el);
     });
 
-    // Hero CTA: reveal on first scroll gesture
+    // Hero CTA: reveal on first scroll gesture.
+    // AbortController tears down all three listeners with one call.
     const heroCta = document.querySelector('.hero-cta');
     if (heroCta) {
+        const ctrl = new AbortController();
         const revealHeroCta = () => {
             heroCta.classList.add('in');
-            window.removeEventListener('scroll', revealHeroCta);
-            window.removeEventListener('wheel', revealHeroCta);
-            window.removeEventListener('touchmove', revealHeroCta);
+            ctrl.abort();
         };
-        window.addEventListener('scroll', revealHeroCta, { passive: true, once: false });
-        window.addEventListener('wheel', revealHeroCta, { passive: true, once: false });
-        window.addEventListener('touchmove', revealHeroCta, { passive: true, once: false });
+        const opts = { passive: true, signal: ctrl.signal };
+        window.addEventListener('scroll', revealHeroCta, opts);
+        window.addEventListener('wheel', revealHeroCta, opts);
+        window.addEventListener('touchmove', revealHeroCta, opts);
     }
 
     /* -----------------------------------------
@@ -224,16 +276,4 @@
         });
     }
 
-    /* -----------------------------------------
-       Subtle parallax on hero background
-    ----------------------------------------- */
-    const heroBg = document.querySelector('.hero-bg');
-    if (heroBg && !prefersReduced) {
-        window.addEventListener('scroll', () => {
-            const y = window.scrollY;
-            if (y < window.innerHeight) {
-                heroBg.style.transform = `translateY(${y * 0.25}px)`;
-            }
-        }, { passive: true });
-    }
 })();
