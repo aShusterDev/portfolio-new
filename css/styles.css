@@ -128,6 +128,20 @@ img { max-width: 100%; display: block; }
     mix-blend-mode: difference;
 }
 
+/* Light mode: disable difference blend so the dark --fg cursor
+   reads as solid black against the light background instead of
+   inverting to a faint gray. */
+[data-theme="light"] .cursor,
+[data-theme="light"] .cursor-dot {
+    mix-blend-mode: normal;
+}
+
+[data-theme="light"] .cursor.cursor-hover {
+    mix-blend-mode: normal;
+    background: var(--accent);
+    border-color: var(--accent);
+}
+
 /* ---------- Scroll progress ---------- */
 .scroll-progress {
     position: fixed;
@@ -176,30 +190,55 @@ img { max-width: 100%; display: block; }
 .nav-brand {
     display: flex;
     align-items: center;
-    gap: .6rem;
     font-weight: 500;
     letter-spacing: -0.01em;
     font-size: .95rem;
+    position: relative;
+    /* Reserve 32px + gap for the absolutely-positioned brand-mark so the
+       text doesn't shift when the mark grows on hover. */
+    padding-left: calc(32px + .6rem);
+    min-height: 32px;
 }
 
+/* Absolutely positioned so the text stays put when the circle grows.
+   We animate width/height directly (not transform: scale) so the image
+   rasterizes crisply at each size instead of being bitmap-stretched. */
 .brand-mark {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -16px; /* half of rest height — grows downward only */
+    display: block;
     width: 32px;
     height: 32px;
     border: 1px solid var(--border-strong);
     border-radius: 50%;
-    font-size: .7rem;
-    font-weight: 600;
-    letter-spacing: 0;
-    transition: background .3s var(--ease-out), color .3s var(--ease-out);
+    overflow: hidden;
+    z-index: 50;
+    transition:
+        width .4s var(--ease-out),
+        height .4s var(--ease-out),
+        border-color .3s var(--ease-out),
+        box-shadow .4s var(--ease-out);
 }
 
+.brand-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    border-radius: 50%;
+}
+
+/* Hover: grow the circle to 160px. Because we're animating width/height
+   (not transform), the browser re-rasterizes the image at each frame,
+   so it stays sharp instead of pixelated. */
 .nav-brand:hover .brand-mark {
-    background: var(--accent);
-    color: var(--bg);
+    width: 160px;
+    height: 160px;
     border-color: var(--accent);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
 }
 
 .nav-links {
@@ -676,8 +715,8 @@ main { width: 100%; }
     display: flex;
     gap: clamp(1.5rem, 4vw, 4rem);
     align-items: flex-end;
-    margin-top: auto;
-    padding-top: 4.5rem;
+    margin-top: 2rem;
+    padding-top: 1.75rem;
     border-top: 1px solid var(--border);
     flex-wrap: wrap;
     position: relative;
@@ -861,6 +900,12 @@ main { width: 100%; }
 .education {
     margin-top: 5rem;
     padding-top: 3rem;
+    border-top: 1px solid var(--border);
+}
+
+.edu-head-secondary {
+    margin-top: 3rem;
+    padding-top: 2rem;
     border-top: 1px solid var(--border);
 }
 
@@ -1127,7 +1172,7 @@ main { width: 100%; }
 
 .contact-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 1.25rem;
 }
 
