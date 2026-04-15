@@ -230,9 +230,17 @@
     /* -----------------------------------------
        Profile portrait — tap to expand (touch only)
        Desktop uses :hover. Touch devices don't have a reliable hover
-       state, so tapping the portrait toggles an .open class. Any scroll
-       or outside tap dismisses it. A single AbortController tears down
-       both dismiss listeners.
+       state, so tapping the portrait toggles an .open class. Any scroll,
+       swipe, or outside tap dismisses it. A single AbortController tears
+       down every listener at once on close.
+
+       iOS gotcha: `click` doesn't reliably fire on non-interactive
+       elements (plain divs, backgrounds), so document-level tap
+       detection uses `pointerdown` + `touchstart` instead of click.
+
+       Smooth-scroll gotcha: another handler further down attaches a
+       click listener to every a[href^="#"] — including this one — and
+       scrolls the page. stopImmediatePropagation below prevents it.
     ----------------------------------------- */
     const navBrand = document.querySelector('.nav-brand');
     const isTouch = window.matchMedia('(hover: none)').matches;
@@ -241,6 +249,7 @@
         let dismissCtrl = null;
 
         const closePortrait = () => {
+            if (!navBrand.classList.contains('open')) return;
             navBrand.classList.remove('open');
             if (dismissCtrl) {
                 dismissCtrl.abort();
@@ -252,19 +261,24 @@
             navBrand.classList.add('open');
             dismissCtrl = new AbortController();
             const signal = dismissCtrl.signal;
-            window.addEventListener('scroll', closePortrait, { passive: true, signal });
-            document.addEventListener('click', (e) => {
+
+            const handleOutsideTap = (e) => {
                 if (!navBrand.contains(e.target)) closePortrait();
-            }, { signal });
+            };
+
+            // pointerdown covers mouse/pen/touch uniformly; touchstart is
+            // a fallback for older iOS Safari without Pointer Events.
+            document.addEventListener('pointerdown', handleOutsideTap, { signal });
+            document.addEventListener('touchstart', handleOutsideTap, { passive: true, signal });
+            // Any scroll or finger-drag dismisses.
+            window.addEventListener('scroll', closePortrait, { passive: true, signal });
+            window.addEventListener('touchmove', closePortrait, { passive: true, signal });
         };
 
         navBrand.addEventListener('click', (e) => {
-            // Hijack the link tap so we can toggle instead of navigating.
-            // stopPropagation prevents the document-level outside-click
-            // handler (added in openPortrait) from immediately re-closing
-            // this same event as it bubbles up.
+            // Hijack the link tap: don't navigate, don't scroll to #home.
             e.preventDefault();
-            e.stopPropagation();
+            e.stopImmediatePropagation();
             if (navBrand.classList.contains('open')) {
                 closePortrait();
             } else {
