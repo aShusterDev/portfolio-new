@@ -231,10 +231,13 @@ img { max-width: 100%; display: block; }
     border-radius: 50%;
 }
 
-/* Hover: grow the circle to 160px. Because we're animating width/height
-   (not transform), the browser re-rasterizes the image at each frame,
-   so it stays sharp instead of pixelated. */
-.nav-brand:hover .brand-mark {
+/* Hover (desktop) or .open class (touch tap) grows the circle to 160px.
+   Because we're animating width/height (not transform), the browser
+   re-rasterizes the image at each frame, so it stays sharp instead of
+   pixelated. The .open state is applied by JS on touch devices where
+   :hover isn't reliable — see script.js. */
+.nav-brand:hover .brand-mark,
+.nav-brand.open .brand-mark {
     width: 160px;
     height: 160px;
     border-color: var(--accent);

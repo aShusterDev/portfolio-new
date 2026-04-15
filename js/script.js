@@ -228,6 +228,52 @@
     }
 
     /* -----------------------------------------
+       Profile portrait — tap to expand (touch only)
+       Desktop uses :hover. Touch devices don't have a reliable hover
+       state, so tapping the portrait toggles an .open class. Any scroll
+       or outside tap dismisses it. A single AbortController tears down
+       both dismiss listeners.
+    ----------------------------------------- */
+    const navBrand = document.querySelector('.nav-brand');
+    const isTouch = window.matchMedia('(hover: none)').matches;
+
+    if (navBrand && isTouch) {
+        let dismissCtrl = null;
+
+        const closePortrait = () => {
+            navBrand.classList.remove('open');
+            if (dismissCtrl) {
+                dismissCtrl.abort();
+                dismissCtrl = null;
+            }
+        };
+
+        const openPortrait = () => {
+            navBrand.classList.add('open');
+            dismissCtrl = new AbortController();
+            const signal = dismissCtrl.signal;
+            window.addEventListener('scroll', closePortrait, { passive: true, signal });
+            document.addEventListener('click', (e) => {
+                if (!navBrand.contains(e.target)) closePortrait();
+            }, { signal });
+        };
+
+        navBrand.addEventListener('click', (e) => {
+            // Hijack the link tap so we can toggle instead of navigating.
+            // stopPropagation prevents the document-level outside-click
+            // handler (added in openPortrait) from immediately re-closing
+            // this same event as it bubbles up.
+            e.preventDefault();
+            e.stopPropagation();
+            if (navBrand.classList.contains('open')) {
+                closePortrait();
+            } else {
+                openPortrait();
+            }
+        });
+    }
+
+    /* -----------------------------------------
        Smooth scroll enhancement
        (native smooth works; this adds offset for fixed nav)
     ----------------------------------------- */
