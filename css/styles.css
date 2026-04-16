@@ -575,7 +575,7 @@ main { width: 100%; }
 .hero-title {
     font-family: var(--serif);
     font-weight: 400;
-    font-size: clamp(3rem, 10vw, 9rem);
+    font-size: clamp(2.4rem, 7.5vw, 6.5rem);
     line-height: 0.95;
     letter-spacing: -0.03em;
     margin-bottom: 2rem;
@@ -1165,7 +1165,7 @@ main { width: 100%; }
 .contact-headline {
     font-family: var(--serif);
     font-weight: 400;
-    font-size: clamp(2.5rem, 7vw, 6rem);
+    font-size: clamp(2rem, 5.5vw, 4.5rem);
     line-height: 1;
     letter-spacing: -0.03em;
     margin-bottom: 3.5rem;
