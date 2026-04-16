@@ -1136,7 +1136,7 @@ main { width: 100%; }
     gap: 2rem;
     animation: marquee 45s linear infinite;
     font-family: var(--serif);
-    font-size: clamp(1.5rem, 3.75vw, 3rem);
+    font-size: clamp(1.125rem, 2.8vw, 2.25rem);
     font-weight: 400;
     color: var(--fg);
     will-change: transform;
