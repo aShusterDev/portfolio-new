@@ -17,10 +17,10 @@
     const themeToggle = document.getElementById('theme-toggle');
 
     function applyTheme(theme) {
-        if (theme === 'light') {
-            document.documentElement.setAttribute('data-theme', 'light');
+        if (theme === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
         } else {
-            document.documentElement.removeAttribute('data-theme');
+            document.documentElement.setAttribute('data-theme', 'light');
         }
         if (themeToggle) {
             const isLight = theme === 'light';
@@ -31,12 +31,12 @@
     }
 
     // Sync button label with whatever was pre-applied in <head>.
-    applyTheme(document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark');
+    applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light');
 
     if (themeToggle) {
         themeToggle.addEventListener('click', () => {
-            const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-            const next = isLight ? 'dark' : 'light';
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            const next = isDark ? 'light' : 'dark';
             applyTheme(next);
             try { localStorage.setItem('theme', next); } catch (e) { /* ignore */ }
         });

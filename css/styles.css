@@ -8,28 +8,6 @@
 }
 
 :root {
-    --bg: #0a0a0a;
-    --bg-alt: #0f0f0f;
-    --fg: #ededed;
-    --fg-muted: #8a8a8a;
-    --fg-dim: #555555;
-    --accent: #d4ff3e;
-    --accent-ink: #0a0a0a;
-    --accent-soft: rgba(212, 255, 62, 0.15);
-    --border: rgba(255, 255, 255, 0.08);
-    --border-strong: rgba(255, 255, 255, 0.15);
-    --nav-bg: rgba(10, 10, 10, 0.78);
-    --hero-blob-1: rgba(212, 255, 62, 0.4);
-    --hero-blob-2: rgba(100, 100, 255, 0.25);
-    --serif: "Fraunces", "Times New Roman", serif;
-    --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-    --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
-    --section-px: clamp(1.5rem, 4vw, 4rem);
-    --section-py: clamp(3.25rem, 6vw, 5.5rem);
-}
-
-[data-theme="light"] {
     --bg: #fafaf7;
     --bg-alt: #f1f1ec;
     --fg: #111111;
@@ -43,6 +21,28 @@
     --nav-bg: rgba(250, 250, 247, 0.82);
     --hero-blob-1: rgba(77, 122, 0, 0.22);
     --hero-blob-2: rgba(90, 110, 200, 0.18);
+    --serif: "Fraunces", "Times New Roman", serif;
+    --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+    --section-px: clamp(1.5rem, 4vw, 4rem);
+    --section-py: clamp(3.25rem, 6vw, 5.5rem);
+}
+
+[data-theme="dark"] {
+    --bg: #0a0a0a;
+    --bg-alt: #0f0f0f;
+    --fg: #ededed;
+    --fg-muted: #8a8a8a;
+    --fg-dim: #555555;
+    --accent: #d4ff3e;
+    --accent-ink: #0a0a0a;
+    --accent-soft: rgba(212, 255, 62, 0.15);
+    --border: rgba(255, 255, 255, 0.08);
+    --border-strong: rgba(255, 255, 255, 0.15);
+    --nav-bg: rgba(10, 10, 10, 0.78);
+    --hero-blob-1: rgba(212, 255, 62, 0.4);
+    --hero-blob-2: rgba(100, 100, 255, 0.25);
 }
 
 html {
@@ -101,7 +101,7 @@ img { max-width: 100%; display: block; }
     transform: translate(-50%, -50%);
     transition: width .3s var(--ease-out), height .3s var(--ease-out), background .3s var(--ease-out), border-color .3s var(--ease-out);
     z-index: 9999;
-    mix-blend-mode: difference;
+    mix-blend-mode: normal;
     will-change: transform;
 }
 
@@ -116,7 +116,7 @@ img { max-width: 100%; display: block; }
     pointer-events: none;
     transform: translate(-50%, -50%);
     z-index: 9999;
-    mix-blend-mode: difference;
+    mix-blend-mode: normal;
     will-change: transform;
 }
 
@@ -125,21 +125,18 @@ img { max-width: 100%; display: block; }
     height: 64px;
     background: var(--accent);
     border-color: var(--accent);
+    mix-blend-mode: normal;
+}
+
+/* Dark mode: use difference blend so the light --fg cursor
+   inverts against the dark background. */
+[data-theme="dark"] .cursor,
+[data-theme="dark"] .cursor-dot {
     mix-blend-mode: difference;
 }
 
-/* Light mode: disable difference blend so the dark --fg cursor
-   reads as solid black against the light background instead of
-   inverting to a faint gray. */
-[data-theme="light"] .cursor,
-[data-theme="light"] .cursor-dot {
-    mix-blend-mode: normal;
-}
-
-[data-theme="light"] .cursor.cursor-hover {
-    mix-blend-mode: normal;
-    background: var(--accent);
-    border-color: var(--accent);
+[data-theme="dark"] .cursor.cursor-hover {
+    mix-blend-mode: difference;
 }
 
 /* ---------- Scroll progress ---------- */
@@ -369,11 +366,11 @@ img { max-width: 100%; display: block; }
     transition: opacity .35s var(--ease-out), transform .45s var(--ease-out);
 }
 
-.theme-toggle .icon-sun { opacity: 1; transform: rotate(0) scale(1); }
-.theme-toggle .icon-moon { opacity: 0; transform: rotate(-90deg) scale(.6); }
+.theme-toggle .icon-sun { opacity: 0; transform: rotate(90deg) scale(.6); }
+.theme-toggle .icon-moon { opacity: 1; transform: rotate(0) scale(1); }
 
-[data-theme="light"] .theme-toggle .icon-sun { opacity: 0; transform: rotate(90deg) scale(.6); }
-[data-theme="light"] .theme-toggle .icon-moon { opacity: 1; transform: rotate(0) scale(1); }
+[data-theme="dark"] .theme-toggle .icon-sun { opacity: 1; transform: rotate(0) scale(1); }
+[data-theme="dark"] .theme-toggle .icon-moon { opacity: 0; transform: rotate(-90deg) scale(.6); }
 
 .nav-toggle {
     display: none;
@@ -575,7 +572,7 @@ main { width: 100%; }
 .hero-title {
     font-family: var(--serif);
     font-weight: 400;
-    font-size: clamp(2.4rem, 7.5vw, 6.5rem);
+    font-size: clamp(2rem, 6.4vw, 5.5rem);
     line-height: 0.95;
     letter-spacing: -0.03em;
     margin-bottom: 2rem;
@@ -656,9 +653,9 @@ main { width: 100%; }
     color: var(--bg);
 }
 
-[data-theme="light"] .btn-primary { background: #111; color: #fafaf7; }
-[data-theme="light"] .btn-primary::before { background: var(--accent); }
-[data-theme="light"] .btn-primary:hover > * { color: var(--accent-ink); }
+[data-theme="dark"] .btn-primary { background: var(--fg); color: var(--bg); }
+[data-theme="dark"] .btn-primary::before { background: var(--accent); }
+[data-theme="dark"] .btn-primary:hover > * { color: var(--accent-ink); }
 
 .btn-primary::before {
     content: "";
@@ -1139,7 +1136,7 @@ main { width: 100%; }
     gap: 2rem;
     animation: marquee 45s linear infinite;
     font-family: var(--serif);
-    font-size: clamp(2rem, 5vw, 4rem);
+    font-size: clamp(1.5rem, 3.75vw, 3rem);
     font-weight: 400;
     color: var(--fg);
     will-change: transform;

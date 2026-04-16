@@ -11,13 +11,18 @@
     <link rel="stylesheet" href="css/styles.css" />
     <script>
         // Apply stored theme before paint to avoid flash.
-        // Defaults to dark; only switches to light if user has opted in.
+        // Defaults to light; only switches to dark if user has opted in.
         (function () {
             try {
-                if (localStorage.getItem('theme') === 'light') {
+                var saved = localStorage.getItem('theme');
+                if (saved === 'dark') {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                } else {
                     document.documentElement.setAttribute('data-theme', 'light');
                 }
-            } catch (e) { /* localStorage unavailable — stay dark */ }
+            } catch (e) {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
         })();
     </script>
 </head>
